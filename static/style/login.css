@@ -1,0 +1,76 @@
+/* Full-screen gradient background */
+body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(to right, #6a11cb, #2575fc); /* Gradient background */
+    margin: 0;
+    font-family: "Poppins", sans-serif;
+}
+
+/* Centered login box */
+.login-container {
+    width: 350px;
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+/* Heading */
+.login-container h2 {
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+/* Input fields */
+.form-control {
+    border-radius: 5px;
+    height: 45px;
+    font-size: 16px;
+}
+
+/* Forgot password link */
+.forgot-password {
+    display: block;
+    text-align: right;
+    font-size: 14px;
+    margin-top: -10px;
+    color: #6a11cb;
+    text-decoration: none;
+}
+
+.forgot-password:hover {
+    text-decoration: underline;
+}
+
+/* Login button */
+.btn-primary {
+    border-radius: 25px;
+    padding: 10px;
+    width: 100%;
+    font-size: 16px;
+    background-color: #2575fc;
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: #1b5ecc;
+}
+
+/* Register link */
+.register-link {
+    font-size: 14px;
+    margin-top: 15px;
+}
+
+.register-link a {
+    color: #2575fc;
+    text-decoration: none;
+}
+
+.register-link a:hover {
+    text-decoration: underline;
+}

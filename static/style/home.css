@@ -1,0 +1,79 @@
+/* General Styling */
+body {
+    font-family: "Poppins", sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
+}
+
+/* Navbar Styling */
+.navbar {
+    padding: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-brand {
+    font-size: 1.7rem;
+    letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+}
+
+.navbar-brand img {
+    height: 40px;
+    margin-right: 10px;
+}
+
+.navbar-nav .nav-link {
+    font-weight: 600;
+    transition: color 0.3s;
+    padding: 10px 15px;
+    border-radius: 5px;
+}
+
+.navbar-nav .nav-link:hover {
+    color: #f8d210 !important;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* Banner Styling */
+.banner {
+    position: relative;
+    width: 100%;
+    height: 500px;
+    background: url("{{ url_for('static', filename='banner.jpg') }}") no-repeat center center/cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+}
+
+.overlay {
+    background: rgba(0, 0, 0, 0.6);
+    padding: 60px;
+    border-radius: 15px;
+}
+
+.overlay h1 {
+    font-size: 3rem;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.overlay p {
+    font-size: 1.2rem;
+    font-style: italic;
+}
+
+/* Buttons */
+.btn-primary, .btn-danger {
+    border-radius: 30px;
+    padding: 10px 20px;
+    transition: all 0.3s ease-in-out;
+}
+
+.btn-primary:hover {
+    background-color: #0044cc;
+    transform: scale(1.05);
+}
