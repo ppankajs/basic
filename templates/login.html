@@ -5,11 +5,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style/login.css') }}">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
 <body>
+
+    <!-- ✅ Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-lg p-3">
+        <div class="container">
+            <!-- Left Side: Logo & MyWebsite -->
+            <a class="navbar-brand fw-bold d-flex align-items-center" href="{{ url_for('home') }}">
+                <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo" height="40" class="me-2">
+                Buddy Loan
+            </a>
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link active" href="{{ url_for('home') }}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('register') }}">Register</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- ✅ Login Form -->
     <div class="login-container">
         <h2>Login</h2>
+
         {% with messages = get_flashed_messages(with_categories=true) %}
             {% if messages %}
                 {% for category, message in messages %}
@@ -19,18 +42,24 @@
         {% endwith %}
         
         <form method="POST">
-            <div class="mb-3">
-                <label class="form-label">Username</label>
-                <input type="text" class="form-control" name="username" required>
+            <div class="input-group mb-3">
+                <i class="fas fa-user"></i>
+                <input type="text" class="form-control" name="email" placeholder="Email" required>
             </div>
-            <div class="mb-3">
-                <label class="form-label">Password</label>
-                <input type="password" class="form-control" name="password" required>
+            <div class="input-group mb-3">
+                <i class="fas fa-lock"></i>
+                <input type="password" class="form-control" name="password" placeholder="Password" required>
             </div>
-            <a href="#" class="forgot-password">Forgot Password?</a>
+
+            <div class="options">
+                <!-- <a href="#">Forgot Password?</a> -->
+            </div>
+
             <button type="submit" class="btn btn-primary mt-3">Login</button>
         </form>
-        <p class="register-link mt-3">Not a member? <a href="{{ url_for('register') }}">Register</a></p>
+        
+        <p class="register-link">Don't have an account? <a href="{{ url_for('register') }}">Register</a></p>
     </div>
+
 </body>
 </html>

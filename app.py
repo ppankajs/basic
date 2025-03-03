@@ -68,26 +68,33 @@ def register():
         email = request.form['email']
         password = request.form['password']
 
-        # Validate email format
-        if not re.match(r'^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$', email):
-            flash('Invalid email address', 'danger')
-            return redirect(url_for('register'))
-
-        # Validate password length
-        if len(password) < 6:
-            flash('Password must be at least 6 characters long', 'danger')
+        # ✅ **Strict Name Validation (Only Alphabets)**
+        if not re.match(r'^[A-Za-z ]+$', name):  # Allows only letters and spaces
+            flash('Name must contain only alphabets.', 'danger')
             return redirect(url_for('register'))
         
+        # ✅ **Strict Email Validation**
+        email_regex = r'^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$'
+        if not re.match(email_regex, email):
+            flash('Invalid email address format. Please enter a valid email.', 'danger')
+            return redirect(url_for('register'))
+
+        # ✅ **Password Complexity Validation**
+        password_regex = r'^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$'
+        if not re.match(password_regex, password):
+            flash('Password must contain at least one uppercase letter, one number, one special character, and be at least 6 characters long.', 'danger')
+            return redirect(url_for('register'))
+
         # Hash the password for security
         hashed_password = generate_password_hash(password)
 
-        # Check if email already exists
+        # ✅ **Check if Email Already Exists**
         response = users_table.get_item(Key={'email': email})
         if 'Item' in response:
             flash('Email already registered. Please log in.', 'warning')
             return redirect(url_for('login'))
 
-        # Save user details in DynamoDB
+        # ✅ **Save User Details in DynamoDB**
         users_table.put_item(
             Item={
                 'email': email,  # Primary Key
@@ -105,20 +112,25 @@ def register():
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
-        email = request.form['email']
-        password = request.form['password']
+        email = request.form.get('email')
+        password = request.form.get('password')
 
         # Fetch user details from DynamoDB
         response = users_table.get_item(Key={'email': email})
         user = response.get('Item')
 
-        if user and check_password_hash(user['password'], password):
+        if not user:
+            flash('Invalid user details. Please check your email and try again.', 'danger')
+            return redirect(url_for('login'))
+
+        # Verify password
+        if check_password_hash(user['password'], password):
             session['user_id'] = email
             session['user_name'] = user['name']
             flash('Login successful!', 'success')
             return redirect(url_for('home'))
         else:
-            flash('Invalid email or password', 'danger')
+            flash('Incorrect password. Please try again.', 'danger')
 
     return render_template('login.html')
 

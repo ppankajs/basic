@@ -5,13 +5,13 @@ body {
     font-family: "Poppins", sans-serif;
     background: url("../images/background.png") no-repeat center center/cover;
     display: flex;
-    flex-direction: column; /* Makes navbar stay at the top */
+    flex-direction: column;
 }
 
 /* Navbar Styling */
 .navbar {
     width: 100%;
-    position: fixed; /* Fix navbar at top */
+    position: fixed;
     top: 0;
     left: 0;
     z-index: 1000;
@@ -43,8 +43,8 @@ body {
     background: rgba(255, 255, 255, 0.1);
 }
 
-/* Centering Login Container */
-.login-container {
+/* Centering Register Container */
+.register-container {
     width: 380px;
     background: rgba(255, 255, 255, 0.1);
     padding: 30px;
@@ -67,6 +67,7 @@ body {
     padding: 5px;
     display: flex;
     align-items: center;
+    margin-bottom: 15px;
 }
 
 .input-group input {
@@ -88,7 +89,7 @@ body {
     color: rgba(255, 255, 255, 0.8);
 }
 
-/* Buttons */
+/* Register button */
 .btn-primary {
     width: 100%;
     border-radius: 25px;
@@ -96,7 +97,8 @@ body {
     font-size: 16px;
     background-color: rgba(255, 255, 255, 0.3);
     border: none;
-    color: rgb(255, 255, 255);
+    color: white;
+    cursor: pointer;
 }
 
 .btn-primary:hover {
