@@ -33,6 +33,9 @@
                 <ul class="navbar-nav ms-auto">
                     {% if session.get('user_id') %}
                     <li class="nav-item">
+                        <a class="nav-link btn btn-danger text-white px-4" href="{{ url_for('profile') }}">Profile</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link btn btn-danger text-white px-4" href="{{ url_for('logout') }}">Logout</a>
                     </li>
                     {% else %}
